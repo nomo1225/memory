@@ -1,7 +1,14 @@
 <div class="row">
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title"><%= @user.name1 %>さん&<%= @user.name2 %>さん</h3>
+      <h3 class="card-title"><%= @user.name1 %>さん & <%= @user.name2 %>さんのページ</h3>
+      <div class="card-body">
+        <image src="" alt="image"></image>
+        <p>思い出の場所：<%= @user.memories_place %></p>
+        <% if @user.anniversary_day %>
+          <p>思い出の日から<%= @year_spend %>年 <%= @month %>ヶ月</p>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

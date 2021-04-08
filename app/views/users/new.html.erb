@@ -22,6 +22,16 @@
         <%= f.label :status, 'お二人のご関係' %>
         <%= f.text_field :status, class: 'form-control' %>
       </div>
+      
+      <div class="form-group">
+        <%= f.label :anniversary_day, '記念日' %>
+        <%= f.date_field :anniversary_day, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :memories_place, '思い出の場所' %>
+        <%= f.text_field :memories_place, class: 'form-control' %>
+      </div>
 
       <div class="form-group">
         <%= f.label :email, 'メールアドレス' %>
