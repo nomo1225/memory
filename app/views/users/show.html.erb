@@ -3,11 +3,12 @@
     <div class="card-header">
       <h3 class="card-title"><%= @user.name1 %>さん & <%= @user.name2 %>さんのページ</h3>
       <div class="card-body">
-        <image src="" alt="image"></image>
+        <%= image_tag @user.image.url %>
         <p>思い出の場所：<%= @user.memories_place %></p>
         <% if @user.anniversary_day %>
           <p>思い出の日から<%= @year_spend %>年 <%= @month %>ヶ月</p>
         <% end %>
+        <%= link_to '情報を編集する', edit_user_path, class: 'btn btn-lg btn-primary' %>
       </div>
     </div>
   </div>

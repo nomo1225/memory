@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authorits_user, only: [:edit, :update, :destroy]
+  before_action :require_user_logged_in, only: [:index, :show, :edit, :update, :destroy]
   
   def index
     @users = User.order(id: :desc).page(params[:page]).per(15)
@@ -19,8 +20,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id
       flash[:success] = '登録しました。'
-      redirect_to @user
+      redirect_to user_path(@user)
     else
       flash.now[:danger] = '登録できませんでした。'
       render :new
@@ -46,7 +48,7 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
   
-  #パスワードリセット
+  #パスワードリマインダー　メール送信
   def forget
     @user = User.new
   end
@@ -65,6 +67,7 @@ class UsersController < ApplicationController
     end
   end
   
+  # パスワードリマインダー　リセットページ
   def reset_password
     if params[:reset_token] == nil || User.find_by(reset_token: params[:reset_token]) ==nil
       flash[:danger] = 'トークンが無効です。再度パスワード再設定メールを送信してください。'

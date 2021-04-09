@@ -1,2 +1,65 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="text-center">
+  <h1>ユーザー編集</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+
+    <%= form_with(model: @user, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      
+      <div class="form-group">
+        <%= f.label :name1, 'あなたのお名前' %>
+        <%= f.text_field :name1, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :name2, 'お相手の方のお名前' %>
+        <%= f.text_field :name2, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :status, 'お二人のご関係' %>
+        <%= f.text_field :status, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :anniversary_day, '記念日' %>
+        <%= f.date_field :anniversary_day, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :memories_place, '思い出の場所' %>
+        <%= f.text_field :memories_place, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email, 'メールアドレス' %>
+        <%= f.email_field :email, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, 'パスワード' %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation, 'パスワード再入力' %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :image, 'アイコン画像' %> <i class="far fa-smile"></i>
+        <%= f.file_field :image, class: 'form-control' %>
+      </div>
+
+      <%= f.submit '編集する', class: 'btn btn-primary btn-block' %>
+    <% end %>
+    <div class="text-center">
+      <%= link_to '二人のページに戻る', user_path %>
+    </div>
+    <div class="text-center">
+      <%= link_to '削除する', @user, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+    </div>
+  </div>
+</div>
