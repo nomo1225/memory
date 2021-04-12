@@ -1,11 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authorits_user, only: [:edit, :update, :destroy]
-  before_action :require_user_logged_in, only: [:index, :show, :edit, :update, :destroy]
-  
-  def index
-    @users = User.order(id: :desc).page(params[:page]).per(15)
-  end
+  before_action :require_user_logged_in, only: [:show, :edit, :update, :destroy]
 
   def show
     month_spend = (Date.today - @user.anniversary_day).to_i / 30

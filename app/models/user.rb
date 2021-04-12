@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :memories, dependent: :destroy
+  
   before_save { self.email.downcase! }
   
   validates :name1, presence: true, length: { maximum: 20 }

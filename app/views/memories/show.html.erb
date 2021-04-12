@@ -1,0 +1,40 @@
+<div class="text-center">
+  <h1>思い出詳細</h1>
+</div>
+
+<table class="table">
+  <tbody>
+    <tr>
+      <th scope="row">
+        <div class="text-center">日付</div>
+      </th>
+      <td><%= @memory.date %></td>
+    </tr>
+    <tr>
+      <th scope="row">
+        <div class="text-center">タイトル</div>
+      </th>
+      <td><%= @memory.content %></td>
+    </tr>
+    <tr>
+      <th scope="row">
+        <div class="text-center">内容</div>
+      </th>
+      <td><%= @memory.content %></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="d-flex flex-column mt-2">
+  <% if @memory.user_id == current_user.id %>
+    <div class="btn btn-outline-info mx-auto  btn-sm mb-1">
+      <%= link_to '編集する', edit_memory_path(@memory) %>
+    </div>
+    <div class="btn btn-outline-danger mx-auto  btn-sm mb-1">
+      <%= link_to '削除する', @memory, method: :delete, data: { confirm: '本当に削除しますか？' }%>
+    </div>
+  <% end %>
+  <div class="btn btn-outline-secondary mx-auto  btn-sm">
+    <%= link_to '一覧に戻る', memories_path(@memory.user_id) %>
+  </div>
+</div>
