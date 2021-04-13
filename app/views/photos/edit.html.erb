@@ -1,0 +1,28 @@
+<div class="text-center">
+  <h1>写真編集</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+
+    <%= form_with(model: @photo, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      
+      <div class="form-group">
+        <%= f.label :title, 'タイトル' %>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :image, '写真' %>
+        <%= f.file_field :image, class: 'form-control' %>
+      </div>
+      
+      <%# = f.hidden_field :user_id, value: current_user.id %>
+      <%# = f.hidden_field :memory_id, value: @memory_id %>
+
+      <%= f.submit '編集する', class: 'btn btn-primary btn-block' %>
+      <%= link_to '削除する', @photo,  method: :delete, data: { confirm: '本当に削除しますか？' },class: 'btn btn-danger btn-block' %>
+    <% end %>
+  </div>
+</div>

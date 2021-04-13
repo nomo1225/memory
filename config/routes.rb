@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   get 'reset_password', to:  'users#reset_password'
   post 'reset_password', to: 'users#run_reset'
   resources :users, only: [:show, :create, :edit, :update, :destroy]
-  resources :memories, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  resources :memories
+  resources :photos
 end

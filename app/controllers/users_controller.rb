@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       flash[:success] = '情報を更新しました。'
-      redirect_to root_path
+      redirect_to user_path(@user)
     else
       flash.now[:danger] = '情報を更新できませんでした。'
       render :edit
@@ -104,7 +104,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user != current_user
       flash[:danger] = '権限がありません。'
-      redirect_to root_path
+      redirect_to user_path(@user)
     end
   end
   

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :memories, dependent: :destroy
+  has_many :photos, dependent: :destroy
   
   before_save { self.email.downcase! }
   
